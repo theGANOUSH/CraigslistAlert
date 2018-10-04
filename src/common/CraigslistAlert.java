@@ -71,7 +71,8 @@ public class CraigslistAlert{
 		}
 		
 		client.close();
-		
+		views.MainWindow mW = new views.MainWindow();
+		mW.setVisible(true);
 		//Email.sendEmail();
 		
 	}

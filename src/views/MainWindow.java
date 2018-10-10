@@ -10,6 +10,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import common.Action;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -30,15 +33,24 @@ public class MainWindow extends JFrame {
 		setTitle("CraigslistAlert!");
 		setSize(500, 200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Action aListener = new Action(this);
 		
 		
 		JToggleButton tglbtnRun = new JToggleButton("Run");
+		tglbtnRun.setName("tglbtnRun");
+		tglbtnRun.addActionListener(aListener);
 		
 		JRadioButton rdbtn_3day = new JRadioButton("3 times a day");
+		rdbtn_3day.setName("rdbtn_3day");
+		rdbtn_3day.addActionListener(aListener);
 		
 		JRadioButton rdbtn_2day = new JRadioButton("2 times a day");
+		rdbtn_2day.setName("rdbtn_2day");
+		rdbtn_2day.addActionListener(aListener);
 		
 		JRadioButton rdbtn_1day = new JRadioButton("1 times a day");
+		rdbtn_1day.setName("rdbtn_1day");
+		rdbtn_1day.addActionListener(aListener);
 		
 		ButtonGroup group = new ButtonGroup();
 		

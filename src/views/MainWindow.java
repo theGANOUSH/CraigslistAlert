@@ -37,19 +37,19 @@ public class MainWindow extends JFrame {
 		
 		
 		JToggleButton tglbtnRun = new JToggleButton("Run");
-		tglbtnRun.setName("tglbtnRun");
+		tglbtnRun.setActionCommand("tglbtnRun");
 		tglbtnRun.addActionListener(aListener);
 		
 		JRadioButton rdbtn_3day = new JRadioButton("3 times a day");
-		rdbtn_3day.setName("rdbtn_3day");
+		rdbtn_3day.setActionCommand("rdbtn_3day");
 		rdbtn_3day.addActionListener(aListener);
 		
 		JRadioButton rdbtn_2day = new JRadioButton("2 times a day");
-		rdbtn_2day.setName("rdbtn_2day");
+		rdbtn_2day.setActionCommand("rdbtn_2day");
 		rdbtn_2day.addActionListener(aListener);
 		
 		JRadioButton rdbtn_1day = new JRadioButton("1 times a day");
-		rdbtn_1day.setName("rdbtn_1day");
+		rdbtn_1day.setActionCommand("rdbtn_1day");
 		rdbtn_1day.addActionListener(aListener);
 		
 		ButtonGroup group = new ButtonGroup();

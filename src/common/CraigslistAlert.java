@@ -30,47 +30,7 @@ public class CraigslistAlert{
 		String searchQuery = "Mazda 3";
 		String baseURL = "https://orlando.craigslist.org/";
 		
-		WebClient client = new WebClient();
 		
-		client.getOptions().setCssEnabled(false);
-		client.getOptions().setJavaScriptEnabled(false);
-		
-		try {
-			String searchUrl = baseURL + "search/sss?sort=rel&query=" + URLEncoder.encode(searchQuery, "UTF-8");
-			
-			HtmlPage page = client.getPage(searchUrl);
-			List<HtmlElement> items = page.getByXPath("//li[@class='result-row']");
-			if(items.isEmpty())
-			{
-				System.out.println("No Items Found!");
-			}
-			else
-			{
-				for(HtmlElement htmlItem : items)
-				{
-					HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//p[@class='result-info']/a"));
-					HtmlElement spanPrice = ((HtmlElement) htmlItem.getFirstByXPath(".//a/span[@class='result-price']")) ;
-					
-					String itemPrice = spanPrice == null ? "0.0" : spanPrice.asText();
-					
-					Item item = new Item();
-					item.setTitle(itemAnchor.asText());
-					item.setUrl(baseURL + itemAnchor.getHrefAttribute());
-					item.setPrice(new BigDecimal(itemPrice.replace("$", "")));
-					
-					ObjectMapper mapper = new ObjectMapper();
-					String jsonString = mapper.writeValueAsString(item);
-					
-					System.out.println(jsonString);
-					
-				}
-			}
-		} catch (FailingHttpStatusCodeException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		client.close();
 		views.MainWindow mW = new views.MainWindow();
 		mW.setVisible(true);
 		//Email.sendEmail();

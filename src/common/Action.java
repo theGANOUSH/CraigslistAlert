@@ -3,6 +3,8 @@ package common;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import views.MainWindow;
 
 public class Action implements ActionListener {
@@ -16,6 +18,23 @@ public class Action implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println(e.getActionCommand());
+		
+		if(e.getActionCommand() == "tglbtnRun") 
+		{
+			String inputText = mWindow.getText();
+			
+			if(inputText == null || inputText.length() == 0)
+			{
+				JOptionPane.showMessageDialog(mWindow,"Please Input a Search Query", "Search Parameter Error", JOptionPane.WARNING_MESSAGE);
+			}
+			else
+			{
+				System.out.println(mWindow.getText());
+			}
+			
+		}
 	}
+		
 }
+
+

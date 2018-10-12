@@ -61,6 +61,7 @@ public class MainWindow extends JFrame {
 		JLabel lblInputSearchQuery = new JLabel("Input Search Query");
 		
 		textField = new JTextField();
+		textField.setText(null);
 		textField.setColumns(10);
 		
 		
@@ -101,6 +102,11 @@ public class MainWindow extends JFrame {
 					.addContainerGap(29, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
+	}
+
+	public String getText() {
+		// TODO Auto-generated method stub
+		return textField.getText();
 	}
 
 }

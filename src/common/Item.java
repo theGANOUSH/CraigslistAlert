@@ -4,6 +4,7 @@
 package common;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author alowe01
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 public class Item {
 	private String title;
 	private BigDecimal price;
+	private Date postDate;
 	private String url;
 	
 	/**
@@ -49,5 +51,17 @@ public class Item {
 	 */
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	/**
+	 * @return the postDate
+	 */
+	public Date getPostDate() {
+		return postDate;
+	}
+	/**
+	 * @param postDate the postDate to set
+	 */
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
 	}
 }

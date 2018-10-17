@@ -27,6 +27,7 @@ public class MainWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
+	private JToggleButton tglbtnRun;
 
 	public MainWindow()
 	{
@@ -36,7 +37,7 @@ public class MainWindow extends JFrame {
 		Action aListener = new Action(this);
 		
 		
-		JToggleButton tglbtnRun = new JToggleButton("Run");
+		tglbtnRun = new JToggleButton("Run");
 		tglbtnRun.setActionCommand("tglbtnRun");
 		tglbtnRun.addActionListener(aListener);
 		
@@ -61,7 +62,6 @@ public class MainWindow extends JFrame {
 		JLabel lblInputSearchQuery = new JLabel("Input Search Query");
 		
 		textField = new JTextField();
-		textField.setText(null);
 		textField.setColumns(10);
 		
 		
@@ -107,6 +107,10 @@ public class MainWindow extends JFrame {
 	public String getText() {
 		// TODO Auto-generated method stub
 		return textField.getText();
+	}
+	
+	public boolean getTglBtnStatus() {
+		return tglbtnRun.isSelected();
 	}
 
 }

@@ -8,9 +8,9 @@ import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
@@ -24,8 +24,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlTime;
  */
 public class CraigslistSearch {
 
-	public static void search(String baseURL, String searchQuery) throws ParseException 
+	public static List<Item> search(String baseURL, String searchQuery) throws ParseException 
 	{
+		List<Item> postings = new LinkedList<Item>();
 		WebClient client = new WebClient();
 	
 		client.getOptions().setCssEnabled(false);
@@ -54,14 +55,16 @@ public class CraigslistSearch {
 					
 					Item item = new Item();
 					item.setTitle(itemAnchor.asText());
-					item.setUrl(baseURL + itemAnchor.getHrefAttribute());
+					item.setUrl(itemAnchor.getHrefAttribute());
 					item.setPrice(new BigDecimal(itemPrice.replace("$", "")));
 					item.setPostDate(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(postDate.getAttribute("datetime")));
 					
-					ObjectMapper mapper = new ObjectMapper();
-					String jsonString = mapper.writeValueAsString(item);
+					postings.add(item);
 					
-					System.out.println(jsonString);
+					//ObjectMapper mapper = new ObjectMapper();
+					//String jsonString = mapper.writeValueAsString(item);
+					
+					//System.out.println(jsonString);
 					
 				}
 			}
@@ -73,5 +76,7 @@ public class CraigslistSearch {
 		//Email.sendEmail();
 		
 		client.close();
+		return postings;
+		
 	}
 }

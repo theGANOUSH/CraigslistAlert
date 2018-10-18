@@ -3,6 +3,7 @@ package common;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -11,6 +12,7 @@ import views.MainWindow;
 public class Action implements ActionListener {
 	
 	private final MainWindow mWindow;
+	private List<Item> listings;
 	
 	public Action(MainWindow pWindow) {
 		mWindow = pWindow;
@@ -35,7 +37,11 @@ public class Action implements ActionListener {
 				mWindow.setTglBtnStatus();
 				mWindow.repaint();
 				try {
-					CraigslistSearch.search(baseURL, inputText);
+					listings = CraigslistSearch.search(baseURL, inputText);
+					//System.out.println(listings.get(0).getUrl());
+					
+					Email.sendEmail(listings);
+					
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -43,6 +49,10 @@ public class Action implements ActionListener {
 
 			}
 			
+		}
+		else
+		{
+			mWindow.resetTextField();
 		}
 	}
 		

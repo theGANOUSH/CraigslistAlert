@@ -78,17 +78,17 @@ public class MainWindow extends JFrame {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(50)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(21)
-							.addComponent(tglbtnRun))
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-							.addComponent(textField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-							.addComponent(lblInputSearchQuery, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(rdbtn_1day, Alignment.LEADING)
-							.addComponent(rdbtn_2day, Alignment.LEADING)
-							.addComponent(rdbtn_3day, Alignment.LEADING)))
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(textField, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+						.addComponent(lblInputSearchQuery, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(rdbtn_1day, Alignment.LEADING)
+						.addComponent(rdbtn_2day, Alignment.LEADING)
+						.addComponent(rdbtn_3day, Alignment.LEADING))
 					.addContainerGap(50, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(42)
+					.addComponent(tglbtnRun, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(43))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -101,7 +101,7 @@ public class MainWindow extends JFrame {
 					.addComponent(rdbtn_1day)
 					.addComponent(rdbtn_2day)
 					.addComponent(rdbtn_3day)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(7)
 					.addComponent(tglbtnRun)
 					.addContainerGap(20, Short.MAX_VALUE))
 		);
@@ -116,6 +116,7 @@ public class MainWindow extends JFrame {
 	public boolean getTglBtnStatus() {
 		return tglbtnRun.isSelected();
 	}
+	
 	public void setTglBtnStatus()
 	{
 		if(tglbtnRun.isSelected())
@@ -126,6 +127,12 @@ public class MainWindow extends JFrame {
 		{
 			tglbtnRun.setText("Run");
 		}
+	}
+	
+	public void resetTextField()
+	{
+		textField.setText("");
+		tglbtnRun.setText("Run");
 	}
 
 }

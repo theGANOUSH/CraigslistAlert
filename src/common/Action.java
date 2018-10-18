@@ -21,7 +21,6 @@ public class Action implements ActionListener {
 		
 		if(e.getActionCommand() == "tglbtnRun" && mWindow.getTglBtnStatus()) 
 		{
-			System.out.println(mWindow.getTglBtnStatus());
 			
 			String inputText = mWindow.getText();
 			
@@ -33,15 +32,15 @@ public class Action implements ActionListener {
 			{
 				String baseURL = "https://orlando.craigslist.org/";
 				
+				mWindow.setTglBtnStatus();
+				mWindow.repaint();
 				try {
 					CraigslistSearch.search(baseURL, inputText);
 				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
-				System.out.println(mWindow.getText());
+
 			}
 			
 		}

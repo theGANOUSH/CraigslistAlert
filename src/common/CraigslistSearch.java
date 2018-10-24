@@ -18,13 +18,17 @@ import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlTime;
 
+import views.MainWindow;
+
 /**
  * @author alowe01
  *
  */
-public class CraigslistSearch {
+public class CraigslistSearch implements Runnable{
+	
+	private String baseURL = "https://orlando.craigslist.org/";
 
-	public static List<Item> search(String baseURL, String searchQuery) throws ParseException 
+	private void search(String searchQuery) throws ParseException 
 	{
 		List<Item> postings = new LinkedList<Item>();
 		WebClient client = new WebClient();
@@ -61,11 +65,6 @@ public class CraigslistSearch {
 					
 					postings.add(item);
 					
-					//ObjectMapper mapper = new ObjectMapper();
-					//String jsonString = mapper.writeValueAsString(item);
-					
-					//System.out.println(jsonString);
-					
 				}
 			}
 		} catch (FailingHttpStatusCodeException | IOException e) {
@@ -76,7 +75,19 @@ public class CraigslistSearch {
 		//Email.sendEmail();
 		
 		client.close();
-		return postings;
+		Action.listings = postings;
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			search(MainWindow.getText());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

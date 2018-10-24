@@ -19,6 +19,9 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 /**
  * @author alowe01
@@ -31,12 +34,12 @@ public class MainWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JToggleButton tglbtnRun;
-	private JTextField textField;
+	private static JTextField textField;
 
 	public MainWindow()
 	{
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(211, 220);
+		setSize(223, 250);
 		this.setLocation(dim.width/2 - this.getWidth()/2, dim.height /2 - this.getHeight() / 2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -106,9 +109,26 @@ public class MainWindow extends JFrame {
 					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmConfigureEmail = new JMenuItem("Preferences");
+		mnFile.setActionCommand("mnFile");
+		mnFile.addActionListener(aListener);
+		mnFile.add(mntmConfigureEmail);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mnFile.setActionCommand("mntmExit");
+		mntmExit.addActionListener(aListener);
+		mnFile.add(mntmExit);
+		
 	}
 
-	public String getText() {
+	public static String getText() {
 		// TODO Auto-generated method stub
 		return textField.getText();
 	}
@@ -122,6 +142,7 @@ public class MainWindow extends JFrame {
 		if(tglbtnRun.isSelected())
 		{
 			tglbtnRun.setText("Running");
+			tglbtnRun.paintImmediately(tglbtnRun.getVisibleRect());
 		}
 		else
 		{
@@ -133,6 +154,8 @@ public class MainWindow extends JFrame {
 	{
 		textField.setText("");
 		tglbtnRun.setText("Run");
+		tglbtnRun.paintImmediately(tglbtnRun.getVisibleRect());
+		
 	}
 
 }

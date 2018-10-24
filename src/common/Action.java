@@ -2,7 +2,6 @@ package common;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -12,7 +11,7 @@ import views.MainWindow;
 public class Action implements ActionListener {
 	
 	private final MainWindow mWindow;
-	private List<Item> listings;
+	public static List<Item> listings;
 	
 	public Action(MainWindow pWindow) {
 		mWindow = pWindow;
@@ -24,7 +23,7 @@ public class Action implements ActionListener {
 		if(e.getActionCommand() == "tglbtnRun" && mWindow.getTglBtnStatus()) 
 		{
 			
-			String inputText = mWindow.getText();
+			String inputText = MainWindow.getText();
 			
 			if(inputText == null || inputText.length() == 0)
 			{
@@ -32,21 +31,24 @@ public class Action implements ActionListener {
 			}
 			else
 			{
-				String baseURL = "https://orlando.craigslist.org/";
-				
 				mWindow.setTglBtnStatus();
-				mWindow.repaint();
+				
+				//long tStartTime = System.currentTimeMillis();
+				Thread t1 = new Thread(new CraigslistSearch());
+				t1.start();
+				
+				System.out.println("Waiting for search to complete");
 				try {
-					listings = CraigslistSearch.search(baseURL, inputText);
-					//System.out.println(listings.get(0).getUrl());
-					
-					Email.sendEmail(listings);
-					
-				} catch (ParseException e1) {
+					t1.join();
+				} catch (InterruptedException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-
+				
+				//System.out.println(tStartTime);
+				System.out.println(listings.size());
+				
+				//Email.sendEmail(listings);
 			}
 			
 		}

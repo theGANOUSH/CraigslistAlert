@@ -141,7 +141,7 @@ public class MainWindow extends JFrame {
 	{
 		if(tglbtnRun.isSelected())
 		{
-			tglbtnRun.setText("Running");
+			tglbtnRun.setText("Cancel");
 			tglbtnRun.paintImmediately(tglbtnRun.getVisibleRect());
 		}
 		else

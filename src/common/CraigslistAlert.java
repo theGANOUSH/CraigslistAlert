@@ -36,7 +36,5 @@ public class CraigslistAlert{
 		views.MainWindow mW = new views.MainWindow();
 		mW.setVisible(true);
 		
-		//CraigslistSearch.search(baseURL, searchQuery);
-		
 	}
 }
